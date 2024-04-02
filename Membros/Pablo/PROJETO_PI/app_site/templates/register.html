@@ -1,0 +1,78 @@
+{% extends "main.html" %}{% block main %}
+<section id="register_section">
+  <form>
+    <div>
+      <label for="name" class="label">Nome:</label>
+      <input type="text" name="name" class="input" placeholder="John Doe" />
+    </div>
+    <div>
+      <label for="supplier" class="label">Fornecedor:</label>
+      <input type="text" name="supplier" class="input" placeholder="company" />
+    </div>
+    <div>
+      <label for="tel" class="label">Telefone:</label>
+      <input
+        type="text"
+        name="tel"
+        class="input"
+        placeholder="(00) 00000-0000"
+      />
+    </div>
+    <div>
+      <label for="tel2" class="label">Telefone alternativo:</label>
+      <input
+        type="text"
+        name="tel2"
+        class="input"
+        placeholder="(00) 00000-0000"
+      />
+    </div>
+    <div>
+      <label for="e-mail" class="label">E-mail:</label>
+      <input
+        type="text"
+        name="e-mail"
+        class="input"
+        placeholder="exemple@exemple.com"
+      />
+    </div>
+    <div>
+      <label for="cnpj" class="label">CNPJ:</label>
+      <input
+        type="text"
+        name="cnpj"
+        class="input"
+        placeholder="XX.XXX.XXX/000X-XX"
+      />
+    </div>
+    <div style="display: flex">
+      <div>
+        <label for="branch" class="label">Filial:</label>
+        <input list="boolean" name="branch" class="input input_smal" />
+
+        <datalist id="boolean">
+          <option value="sim"></option>
+          <option value="não"></option>
+        </datalist>
+      </div>
+      <div>
+        <label for="headquarters">Matriz</label>
+        <input type="text" name="headquarters" class="input" />
+      </div>
+    </div>
+
+    <div>
+      <label for="maintenece-date">Frequência de manutenção:</label>
+      <input list="date-list" name="maintenece-date" class="input" />
+
+      <datalist id="date-list">
+        <option value="A cada 8 meses"></option>
+        <option value="A cada 1000 meses"></option>
+        <option value="exemplo"></option>
+      </datalist>
+    </div>
+
+    <button type="submit" class="button_submit">CADASTRAR</button>
+  </form>
+</section>
+{% endblock %}
