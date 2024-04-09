@@ -23,6 +23,7 @@ body {
 }
 
 body aside {
+    height: 100vh;
     width: 250px;
     border-right: 2px solid var(--zinc-500);
     background-color: var(--zinc-900);
@@ -48,7 +49,6 @@ body aside #logo {
     justify-content: center;
     align-items: center;
     height: 100px;
-    background-color: var(--zinc-900);
 }
 
 body aside #navbar .button {
@@ -56,16 +56,30 @@ body aside #navbar .button {
     justify-content: space-evenly;
     align-items: center;
     height: 60px;
-    width: 80%;
+    width: 90%;
     padding: 1px;
     border-radius: 4px;
     background: none;
     border: solid 2px;
     border-color: var(--zinc-500);
-    font-size: large;
+    font-size: medium;
     color: var(--zinc-300);
     text-decoration: none;
-    line-height: 1.3rem;
+    line-height: 1.1rem;
+}
+
+body #responsive_menu {
+    display: none;
+    color: var(--zinc-300);
+    background-color: var(--zinc-900);
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
 }
 
 body #workspace {
@@ -206,4 +220,15 @@ main #register_section .input_smal {
 
 main #register_section .button_submit {
     width: 100px;
+}
+
+@media screen and (max-width: 600px) {
+    body aside {
+        display: none;
+        position: absolute;
+        width: 200px;
+    }
+    body #responsive_menu {
+        display: flex;
+    }
 }
