@@ -99,7 +99,7 @@
         </a>
       </nav>
     </aside>
-    <div id="responsive_menu" onclick="menuOpen()">
+    <div id="responsive_menu" onclick="openOrClose(sidebar, 'block')">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="30"
@@ -116,6 +116,15 @@
         <line x1="4" x2="20" y1="6" y2="6" />
         <line x1="4" x2="20" y1="18" y2="18" />
       </svg>
+    </div>
+    <div id="update">
+      <button
+        class="exit radius-top"
+        onclick="openOrClose(update, 'flex', selectForUpdateClear())"
+      >
+        X
+      </button>
+      <div>{% include "update.html" %}</div>
     </div>
     <div id="workspace">
       <header>
@@ -166,11 +175,64 @@
   </body>
   <script>
     const sidebar = document.querySelector("#aside");
-    function menuOpen() {
-      const state = getComputedStyle(sidebar).display;
-      if (state == "none") return (sidebar.style.display = "block");
+    const update = document.querySelector("#update");
 
-      if (state == "block") return (sidebar.style.display = "none");
+    const update_name = document.querySelector("#update_name");
+    const update_company = document.querySelector("#update_company");
+    const update_cnpj = document.querySelector("#update_cnpj");
+    const update_headquarters = document.querySelector("#update_headquarters");
+    const update_email = document.querySelector("#update_email");
+    const update_tel = document.querySelector("#update_tel");
+    const update_tel2 = document.querySelector("#update_tel2");
+    const update_branch = document.querySelector("#update_branch");
+    const update_maintenece = document.querySelector("#update_maintenece");
+
+    function selectForUpdate(uuid) {
+      //consulta ao db
+      const result = {
+        name: uuid,
+        company: "exemple",
+        cnpj: "0000000",
+        headquarter: "jsdkj",
+        email: "exemple@exemple.com",
+        tel: "0000df0d0",
+        tel2: "0000df0d0",
+        branch: "sim",
+        maintenece: "sfsdf",
+      };
+
+      update_name.value = result.name;
+      update_company.value = result.company;
+      update_cnpj.value = result.cnpj;
+      update_headquarter.value = result.headquarter;
+      update_email.value = result.email;
+      update_tel.value = result.tel;
+      update_tel2.value = result.tel2;
+      update_branch.value = result.branch;
+      update_maintenece.value = result.maintenece;
+    }
+
+    function selectForUpdateClear() {
+      update_name.value = "";
+      update_company.value = "";
+      update_cnpj.value = "";
+      update_headquarter.value = "";
+      update_email.value = "";
+      update_tel.value = "";
+      update_tel2.value = "";
+      update_branch.value = "";
+      update_maintenece.value = "";
+    }
+
+    function openOrClose(HTMLElement, defaltDisplay, callback = undefined) {
+      const state = getComputedStyle(HTMLElement).display;
+      if (state == "none") {
+        if (callback) callback();
+        return (HTMLElement.style.display = defaltDisplay);
+      }
+
+      if (state == "block" || state == "flex")
+        return (HTMLElement.style.display = "none");
     }
   </script>
 </html>

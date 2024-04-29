@@ -1,13 +1,26 @@
 {% extends "main.html" %}{% block main %}
 <section id="register_section">
   <form>
+    {% csrf_token %}
     <div>
       <label for="name" class="label">Nome:</label>
-      <input type="text" name="name" class="input" placeholder="John Doe" />
+      <input
+        id="name"
+        type="text"
+        name="name"
+        class="input"
+        placeholder="John Doe"
+      />
     </div>
     <div>
       <label for="supplier" class="label">Fornecedor:</label>
-      <input type="text" name="supplier" class="input" placeholder="company" />
+      <input
+        id="company"
+        type="text"
+        name="supplier"
+        class="input"
+        placeholder="company"
+      />
     </div>
     <div>
       <label for="tel" class="label">Telefone:</label>
@@ -45,20 +58,18 @@
         placeholder="XX.XXX.XXX/000X-XX"
       />
     </div>
-    <div style="display: flex">
-      <div>
-        <label for="branch" class="label">Filial:</label>
-        <input list="boolean" name="branch" class="input input_smal" />
 
-        <datalist id="boolean">
-          <option value="sim"></option>
-          <option value="não"></option>
-        </datalist>
-      </div>
-      <div>
-        <label for="headquarters">Matriz</label>
-        <input type="text" name="headquarters" class="input" />
-      </div>
+    <div>
+      <label for="branch" class="label">Filial:</label>
+      <input list="boolean" name="branch" class="input input_smal" />
+      <datalist id="boolean">
+        <option value="sim"></option>
+        <option value="não"></option>
+      </datalist>
+    </div>
+    <div>
+      <label for="headquarters" class="label">Matriz</label>
+      <input type="text" name="headquarters" class="input" />
     </div>
 
     <div>

@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+
+  <title>Projeto PI</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body>
+  <main class="flex-column" style="height: 100%">
+    <section id="register_section">
+      <form>
+        {% csrf_token %}
+        <div>
+          <label for="name" class="label">Nome:</label>
+          <input
+            type="text"
+            name="name"
+            class="input"
+            placeholder="John Doe"
+            id="update_name"
+          />
+        </div>
+        <div>
+          <label for="supplier" class="label">Fornecedor:</label>
+          <input
+            type="text"
+            name="supplier"
+            class="input"
+            placeholder="company"
+            id="update_company"
+          />
+        </div>
+        <div>
+          <label for="tel" class="label">Telefone:</label>
+          <input
+            type="text"
+            name="tel"
+            class="input"
+            placeholder="(00) 00000-0000"
+            id="update_tel"
+          />
+        </div>
+        <div>
+          <label for="tel2" class="label">Telefone alternativo:</label>
+          <input
+            type="text"
+            name="tel2"
+            class="input"
+            placeholder="(00) 00000-0000"
+            id="update_tel2"
+          />
+        </div>
+        <div>
+          <label for="email" class="label">E-mail:</label>
+          <input
+            type="text"
+            name="email"
+            class="input"
+            placeholder="exemple@exemple.com"
+            id="update_email"
+          />
+        </div>
+        <div>
+          <label for="cnpj" class="label">CNPJ:</label>
+          <input
+            type="text"
+            name="cnpj"
+            class="input"
+            placeholder="XX.XXX.XXX/000X-XX"
+            id="update_cnpj"
+          />
+        </div>
+
+        <div>
+          <label for="branch" class="label">Filial:</label>
+          <input
+            list="boolean"
+            name="branch"
+            class="input input_smal"
+            id="update_branch"
+          />
+          <datalist id="boolean">
+            <option value="sim"></option>
+            <option value="não"></option>
+          </datalist>
+        </div>
+        <div>
+          <label for="headquarter" class="label">Matriz</label>
+          <input
+            type="text"
+            name="headquarters"
+            class="input"
+            id="update_headquarter"
+          />
+        </div>
+
+        <div>
+          <label for="maintenece-date">Frequência de manutenção:</label>
+          <input
+            list="date-list"
+            name="maintenece-date"
+            class="input"
+            id="update_maintenece"
+          />
+
+          <datalist id="date-list">
+            <option value="A cada 8 meses"></option>
+            <option value="A cada 1000 meses"></option>
+            <option value="exemplo"></option>
+          </datalist>
+        </div>
+        <div>
+          <button type="submit" class="button_submit margin-left">
+            ATUALIZAR
+          </button>
+          <button class="button_submit bg-color-red">DELETAR</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>

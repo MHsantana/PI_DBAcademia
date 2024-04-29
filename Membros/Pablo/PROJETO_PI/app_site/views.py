@@ -9,3 +9,6 @@ def dashboard(request):
 
 def register(request):
     return render(request,'register.html', {'page': 'REGISTER'})
+ 
+def update(request, id):
+    return render(request,'update.html', {"id": id}) 
