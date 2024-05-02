@@ -4,46 +4,18 @@
   <div id="next_maintenance_list">
     <!-- aqui vai ser adicionado pelo banco de dados -->
 
+    {% for product in productsByMaintenance %}
     <div
       class="product pointer hover-shadow"
-      onclick="openOrClose(update, 'flex')"
+      onclick="openOrClose(update, 'flex', selectForUpdate({{product.id}}))"
     >
-      <strong class="name">Máquina de muscular da hora.</strong>
-      <p class="company">Joaquin das Engrenagens</p>
+      <strong class="name">{{product.name}}</strong>
+      <p class="company">{{product.company}}</p>
       <div class="date">
-        <p>Manutenção: <span>01/06/2024</span></p>
+        <p>Manutenção: <span>{{product.maintenance}}</span></p>
       </div>
     </div>
-    <div
-      class="product pointer hover-shadow"
-      onclick="openOrClose(update, 'flex')"
-    >
-      <strong class="name">Máquina de muscular da hora.</strong>
-      <p class="company">Joaquin das Engrenagens</p>
-      <div class="date">
-        <p>Manutenção: <span>01/06/2024</span></p>
-      </div>
-    </div>
-    <div
-      class="product pointer hover-shadow"
-      onclick="openOrClose(update, 'flex')"
-    >
-      <strong class="name">Máquina de muscular da hora.</strong>
-      <p class="company">Joaquin das Engrenagens</p>
-      <div class="date">
-        <p>Manutenção: <span>01/06/2024</span></p>
-      </div>
-    </div>
-    <div
-      class="product pointer hover-shadow"
-      onclick="openOrClose(update, 'flex')"
-    >
-      <strong class="name">Máquina de muscular da hora.</strong>
-      <p class="company">Joaquin das Engrenagens</p>
-      <div class="date">
-        <p>Manutenção: <span>01/06/2024</span></p>
-      </div>
-    </div>
+    {% endfor %}
 
     <!-- -->
   </div>
@@ -52,30 +24,19 @@
   <h3>Lista de Máquinas Cadastradas</h3>
   <div id="registered_list">
     <!-- aqui vai ser adicionado pelo banco de dados -->
+
     <ul>
+      {% for product in products %}
       <li
         class="hover-white pointer"
-        onclick="openOrClose(update, 'flex', selectForUpdate('aaasdsdsd'))"
+        onclick="openOrClose(update, 'flex', selectForUpdate({{product.id}}))"
       >
-        <strong class="name">Máquina de muscular da hora.</strong>
-        <p class="company">Joaquin das Engrenagens</p>
+        <strong class="name">{{ product.name }}</strong>
+        <p class="company">{{ product.company }}</p>
       </li>
-      <li
-        class="hover-white pointer"
-        onclick="openOrClose(update, 'flex', selectForUpdate('odododododododododo'))"
-      >
-        <strong class="name">Máquina de muscular da hora.</strong>
-        <p class="company">Joaquin das Engrenagens</p>
-      </li>
-      <li class="hover-white pointer" onclick="openOrClose(update, 'flex')">
-        <strong class="name">Máquina de muscular da hora.</strong>
-        <p class="company">Joaquin das Engrenagens</p>
-      </li>
-      <li class="hover-white pointer" onclick="openOrClose(update, 'flex')">
-        <strong class="name">Máquina de muscular da hora.</strong>
-        <p class="company">Joaquin das Engrenagens</p>
-      </li>
+      {% endfor %}
     </ul>
+
     <!--  -->
   </div>
 </section>

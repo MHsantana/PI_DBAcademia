@@ -177,6 +177,7 @@
     const sidebar = document.querySelector("#aside");
     const update = document.querySelector("#update");
 
+    const product_id = document.querySelector("#product_id");
     const update_name = document.querySelector("#update_name");
     const update_company = document.querySelector("#update_company");
     const update_cnpj = document.querySelector("#update_cnpj");
@@ -184,35 +185,39 @@
     const update_email = document.querySelector("#update_email");
     const update_tel = document.querySelector("#update_tel");
     const update_tel2 = document.querySelector("#update_tel2");
-    const update_branch = document.querySelector("#update_branch");
-    const update_maintenece = document.querySelector("#update_maintenece");
+    const update_maintenance = document.querySelector("#update_maintenece");
+    const update_branch = document.getElementsByName("branch");
+    const set_update_branch = (boolean) => {
+      boolean
+        ? (update_branch[0].checked = true)
+        : (update_branch[1].checked = true);
+    };
+
+    const product_update = document.querySelector("#product_update");
+    const product_delete = document.querySelector("#product_delete");
 
     function selectForUpdate(uuid) {
       //consulta ao db
-      const result = {
-        name: uuid,
-        company: "exemple",
-        cnpj: "0000000",
-        headquarter: "jsdkj",
-        email: "exemple@exemple.com",
-        tel: "0000df0d0",
-        tel2: "0000df0d0",
-        branch: "sim",
-        maintenece: "sfsdf",
-      };
-
-      update_name.value = result.name;
-      update_company.value = result.company;
-      update_cnpj.value = result.cnpj;
-      update_headquarter.value = result.headquarter;
-      update_email.value = result.email;
-      update_tel.value = result.tel;
-      update_tel2.value = result.tel2;
-      update_branch.value = result.branch;
-      update_maintenece.value = result.maintenece;
+      const url = "/v1/product/" + uuid;
+      fetch(url)
+        .then((response) => response.json())
+        .then((result) => {
+          product_id.value = uuid;
+          update_name.value = result.name;
+          update_company.value = result.company;
+          update_cnpj.value = result.cnpj || "";
+          update_headquarter.value = result.headquarter || "";
+          update_email.value = result.email || "";
+          update_tel.value = result.tel || "";
+          update_tel2.value = result.tel2 || "";
+          update_maintenance.value = result.maintenance || "";
+          set_update_branch(result.branch);
+        })
+        .catch((error) => console.error("Ocorreu um erro:", error));
     }
 
     function selectForUpdateClear() {
+      product_id.value = "";
       update_name.value = "";
       update_company.value = "";
       update_cnpj.value = "";
@@ -220,8 +225,8 @@
       update_email.value = "";
       update_tel.value = "";
       update_tel2.value = "";
-      update_branch.value = "";
-      update_maintenece.value = "";
+      update_maintenance.value = "";
+      set_update_branch(false);
     }
 
     function openOrClose(HTMLElement, defaltDisplay, callback = undefined) {
@@ -234,5 +239,48 @@
       if (state == "block" || state == "flex")
         return (HTMLElement.style.display = "none");
     }
+
+    product_update.addEventListener("click", function (event) {
+      event.preventDefault();
+      const uuid = product_id.value;
+
+      const formData = new FormData();
+      formData.append("name", update_name.value);
+      formData.append("company", update_company.value);
+      formData.append("cnpj", update_cnpj.value);
+      formData.append("headquarter", update_headquarter.value);
+      formData.append("email", update_email.value);
+      formData.append("tel", update_tel.value);
+      formData.append("tel2", update_tel2.value);
+      formData.append("branch", update_branch[0].checked);
+      formData.append("maintenance", update_maintenance.value);
+      console.log(formData);
+
+      fetch("/v1/product/" + uuid, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          alert(result.msg || result.error);
+          location.reload();
+        });
+    });
+
+    product_delete.addEventListener("click", function (event) {
+      event.preventDefault();
+      const uuid = product_id.value;
+      const autorization = confirm(
+        "tem certeza que quer deletar este cadastro?"
+      );
+      if (autorization) {
+        fetch("/v1/product/" + uuid, { method: "DELETE" })
+          .then((response) => response.json())
+          .then((result) => {
+            alert(result.msg || result.error);
+            location.reload();
+          });
+      }
+    });
   </script>
 </html>

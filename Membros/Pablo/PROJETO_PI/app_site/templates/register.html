@@ -1,6 +1,6 @@
 {% extends "main.html" %}{% block main %}
 <section id="register_section">
-  <form>
+  <form method="POST" action="/v1/product">
     {% csrf_token %}
     <div>
       <label for="name" class="label">Nome:</label>
@@ -10,16 +10,18 @@
         name="name"
         class="input"
         placeholder="John Doe"
+        required
       />
     </div>
     <div>
-      <label for="supplier" class="label">Fornecedor:</label>
+      <label for="company" class="label">Fornecedor:</label>
       <input
         id="company"
         type="text"
-        name="supplier"
+        name="company"
         class="input"
         placeholder="company"
+        required
       />
     </div>
     <div>
@@ -41,10 +43,10 @@
       />
     </div>
     <div>
-      <label for="e-mail" class="label">E-mail:</label>
+      <label for="email" class="label">E-mail:</label>
       <input
         type="text"
-        name="e-mail"
+        name="email"
         class="input"
         placeholder="exemple@exemple.com"
       />
@@ -60,21 +62,25 @@
     </div>
 
     <div>
-      <label for="branch" class="label">Filial:</label>
-      <input list="boolean" name="branch" class="input input_smal" />
-      <datalist id="boolean">
-        <option value="sim"></option>
-        <option value="não"></option>
-      </datalist>
-    </div>
-    <div>
-      <label for="headquarters" class="label">Matriz</label>
-      <input type="text" name="headquarters" class="input" />
+      <label for="branch" class="label">Filial: </label>
+      <label>
+        <input type="radio" name="branch" value="true" />
+        sim
+      </label>
+      <label>
+        <input type="radio" name="branch" value="false" checked />
+        não
+      </label>
     </div>
 
     <div>
-      <label for="maintenece-date">Frequência de manutenção:</label>
-      <input list="date-list" name="maintenece-date" class="input" />
+      <label for="headquarter" class="label">Matriz</label>
+      <input type="text" name="headquarter" class="input" />
+    </div>
+
+    <div>
+      <label for="maintenance">Frequência de manutenção:</label>
+      <input list="date-list" name="maintenance" class="input" />
 
       <datalist id="date-list">
         <option value="A cada 8 meses"></option>
