@@ -1,6 +1,6 @@
 
-from django.urls import path
-
+from django.urls import path, include
+from django.contrib import admin
 from app_site import views
 from api import views as apiViews
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('dashboard/',views.dashboard,name='dashboard'),   
     path('register/',views.register,name='register'),   
     path('v1/product',apiViews.apiProducts), #adicionar via post e listar via get
-    path('v1/product/<id>', apiViews.apiProduct) #visualiza um especifico, atualiza e deleta
+    path('v1/product/<id>', apiViews.apiProduct), #visualiza um especifico, atualiza e deleta
+    path('admin/', admin.site.urls),
 ]
