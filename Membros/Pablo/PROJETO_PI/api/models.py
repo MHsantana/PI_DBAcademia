@@ -12,4 +12,4 @@ class Product(models.Model):
     tel2 = models.CharField(max_length=20, blank=True, null=True)
     branch = models.BooleanField(default=False)
     maintenance = models.DateField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    #created_at = models.DateTimeField(auto_now_add=True)
