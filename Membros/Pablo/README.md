@@ -1,16 +1,16 @@
 # SETUP INICIAL AO BAIXAR ARQUIVOS
 
-## criar usuario e senha para autenticação
-
-```sh
-python manage.py createsuperuser
-```
-
 ## gerar as migrações no banco de dados
 
 ```sh
 python manage.py makemigrations
 python manage.py migrate
+```
+
+## criar usuario e senha para autenticação
+
+```sh
+python manage.py createsuperuser
 ```
 
 ## notas
